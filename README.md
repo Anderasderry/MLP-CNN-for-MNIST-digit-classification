@@ -5,7 +5,8 @@
 A **NumPy-only** MLP and CNN for MNIST digit classification.
 
 - All runnable code is under [`codes/`](codes/).
-- This repo does **not** include MNIST raw data or model weights (see [`codes/.gitignore`](codes/.gitignore)). Upload checkpoints to **ModelScope** and link them in your report, as required by the course.
+- This repo does **not** include MNIST raw data or model weights (see [`codes/.gitignore`](codes/.gitignore)).
+- **Trained weights** are on [ModelScope](https://www.modelscope.cn/models/Anderasderry/MLP_CNN_for_MNIST_classification) (see [§ Model weights](#model-weights-modelscope) below).
 
 **Requirements:** Python 3.8+, `numpy`, `matplotlib`
 
@@ -35,8 +36,6 @@ Data are stored in `codes/dataset/MNIST/` as four `.gz` files:
 | `t10k-images-idx3-ubyte.gz` | 10,000 test images |
 | `t10k-labels-idx1-ubyte.gz` | test labels |
 
-### Option A — Automatic (recommended)
-
 Start training directly. `data_utils.load_mnist_splits()` downloads any missing files from the public MNIST mirror:
 
 ```bash
@@ -50,10 +49,6 @@ Download only (no training):
 cd codes
 python -c "from data_utils import download_mnist; download_mnist()"
 ```
-
-### Option B — Manual download
-
-Download the four files from [the MNIST mirror](https://storage.googleapis.com/cvdf-datasets/mnist/) and place them in `codes/dataset/MNIST/`.
 
 ### Data split
 
@@ -140,6 +135,52 @@ Aggregated metrics: `codes/experiment_outputs/results.json`.
 
 ---
 
+## Model weights (ModelScope)
+
+Pre-trained checkpoints (NumPy `pickle`, produced by `Model_MLP.save_model` / `Model_CNN.save_model`):
+
+**ModelScope:** https://www.modelscope.cn/models/Anderasderry/MLP_CNN_for_MNIST_classification
+
+After downloading from ModelScope, place the files under `codes/experiment_outputs/` using the same layout as local training:
+
+```
+codes/experiment_outputs/
+├── mlp_multistep/
+│   └── best_model.pickle      # MLP + MultiStepLR (val 94.96%, test 95.41%)
+├── mlp_constant_lr/
+│   └── best_model.pickle      # MLP + fixed LR (val 96.86%, test 97.31%)
+└── cnn_multistep/
+    └── best_model.pickle      # CNN + MultiStepLR (val 98.44%, test 98.53%)
+```
+
+| File | Model | Use with |
+|------|-------|----------|
+| `mlp_multistep/best_model.pickle` | MLP baseline (MultiStepLR) | `test_model.py --model mlp`, `plot_analysis.py` (default) |
+| `mlp_constant_lr/best_model.pickle` | MLP, fixed learning rate | Part C optimization comparison |
+| `cnn_multistep/best_model.pickle` | CNN baseline | `test_model.py --model cnn`, CNN visualizations |
+
+**Load and evaluate** (from `codes/`):
+
+```bash
+python test_model.py --model mlp --checkpoint ./experiment_outputs/mlp_multistep/best_model.pickle
+python test_model.py --model cnn --checkpoint ./experiment_outputs/cnn_multistep/best_model.pickle
+```
+
+**Regenerate report figures** (requires all three checkpoints above):
+
+```bash
+python plot_analysis.py \
+  --mlp-checkpoint ./experiment_outputs/mlp_multistep/best_model.pickle \
+  --cnn-checkpoint ./experiment_outputs/cnn_multistep/best_model.pickle \
+  --mlp-constant-history ./experiment_outputs/mlp_constant_lr/runner_history.pickle \
+  --mlp-scheduler-history ./experiment_outputs/mlp_multistep/runner_history.pickle \
+  --out-dir ../report/figures
+```
+
+> `runner_history.pickle` files are optional on ModelScope; they are only needed for the learning-rate comparison plot. Re-run `run_all_experiments.py` locally if you need them.
+
+---
+
 ## Code layout (`codes/`)
 
 | Path | Description |
@@ -159,4 +200,4 @@ Optional: explore data in `dataset_explore.ipynb`.
 ## Notes
 
 - **Runtime:** MLP ~tens of minutes per 5 epochs on CPU; CNN is slower. Full `run_all_experiments.py` may take about **1–2 hours** depending on hardware.
-- **Submission:** code on GitHub; weights on ModelScope. `*.pickle` files are listed in `.gitignore`.
+- **Submission:** code on GitHub; weights on [ModelScope](https://www.modelscope.cn/models/Anderasderry/MLP_CNN_for_MNIST_classification). `*.pickle` files are listed in `.gitignore`.
