@@ -1,0 +1,22 @@
+# MNIST raw data (run data_utils.py or train script to download)
+dataset/MNIST/*.gz
+dataset/MNIST/*-ubyte
+dataset/MNIST/*-ubyte.gz
+
+# Cached split indices
+idx.pickle
+
+# Model checkpoints and training histories
+experiment_outputs/**/*.pickle
+saved_models/
+*.pickle
+
+# Python / Jupyter
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS junk
+.DS_Store
+Thumbs.db

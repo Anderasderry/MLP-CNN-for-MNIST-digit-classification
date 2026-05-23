@@ -1,0 +1,15 @@
+{
+  "name": "mlp_constant_lr",
+  "model": "mlp",
+  "scheduler": false,
+  "epochs": 5,
+  "lr": 0.06,
+  "best_val_acc": 0.9686,
+  "val_acc": 0.9686,
+  "val_loss": 0.10404147889425071,
+  "test_acc": 0.9731,
+  "test_loss": 0.0938481136373249,
+  "train_time_sec": 900.1691818237305,
+  "model_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\mlp_constant_lr\\best_model.pickle",
+  "curves_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\mlp_constant_lr\\curves.png"
+}

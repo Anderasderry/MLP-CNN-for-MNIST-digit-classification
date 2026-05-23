@@ -1,0 +1,15 @@
+{
+  "name": "mlp_multistep",
+  "model": "mlp",
+  "scheduler": true,
+  "epochs": 5,
+  "lr": 0.06,
+  "best_val_acc": 0.9496,
+  "val_acc": 0.9496,
+  "val_loss": 0.17415224627463322,
+  "test_acc": 0.9541,
+  "test_loss": 0.16071342502503225,
+  "train_time_sec": 716.6136522293091,
+  "model_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\mlp_multistep\\best_model.pickle",
+  "curves_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\mlp_multistep\\curves.png"
+}

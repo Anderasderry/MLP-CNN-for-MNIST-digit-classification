@@ -1,0 +1,47 @@
+{
+  "mlp_multistep": {
+    "name": "mlp_multistep",
+    "model": "mlp",
+    "scheduler": true,
+    "epochs": 5,
+    "lr": 0.06,
+    "best_val_acc": 0.9496,
+    "val_acc": 0.9496,
+    "val_loss": 0.17415224627463322,
+    "test_acc": 0.9541,
+    "test_loss": 0.16071342502503225,
+    "train_time_sec": 716.6136522293091,
+    "model_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\mlp_multistep\\best_model.pickle",
+    "curves_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\mlp_multistep\\curves.png"
+  },
+  "mlp_constant_lr": {
+    "name": "mlp_constant_lr",
+    "model": "mlp",
+    "scheduler": false,
+    "epochs": 5,
+    "lr": 0.06,
+    "best_val_acc": 0.9686,
+    "val_acc": 0.9686,
+    "val_loss": 0.10404147889425071,
+    "test_acc": 0.9731,
+    "test_loss": 0.0938481136373249,
+    "train_time_sec": 900.1691818237305,
+    "model_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\mlp_constant_lr\\best_model.pickle",
+    "curves_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\mlp_constant_lr\\curves.png"
+  },
+  "cnn_multistep": {
+    "name": "cnn_multistep",
+    "model": "cnn",
+    "scheduler": true,
+    "epochs": 3,
+    "lr": 0.06,
+    "best_val_acc": 0.985,
+    "val_acc": 0.9844,
+    "val_loss": 0.05103291208454485,
+    "test_acc": 0.9853,
+    "test_loss": 0.043100209965957585,
+    "train_time_sec": 2024.5880329608917,
+    "model_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\cnn_multistep\\best_model.pickle",
+    "curves_path": "D:\\222222wenjian\\Courses\\NNDL\\PJ1\\codes\\experiment_outputs\\cnn_multistep\\curves.png"
+  }
+}
